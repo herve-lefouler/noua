@@ -38,8 +38,6 @@ jobs:
         run: |
           wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
           && sudo dpkg -i ${{ runner.temp }}/hugo.deb
-      - name: Install Dart Sass
-        run: sudo snap install dart-sass
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -50,6 +48,19 @@ jobs:
         uses: actions/configure-pages@v4
       - name: Install Node.js dependencies
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
+      # Setup nodeJS for the theme
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      # Install npm dependencies for the theme
+      - name: Install Theme dependencies
+        run: npm install
+        working-directory: themes/noua
+      # Compile SASS to CSS for the theme
+      - name: Compile SASS
+        run: npm run prod:compile
+        working-directory: themes/noua
       - name: Build with Hugo
         env:
           # For maximum backward compatibility with Hugo modules
@@ -73,9 +84,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      # Compile SASS to CSS
-      - name: Compile SASS
-        run: ./dart-sass/sass themes/noua/assets/scss/app.scss:themes/noua/static/css/app.css
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
