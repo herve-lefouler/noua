@@ -3,3 +3,21 @@ backend:
   branch: main # Branch to update
 media_folder: static/img
 public_folder: /img
+collections:
+  - name: associes
+    label: Associés
+    label_singular: 'Associé'
+    folder: content/associe
+    path: '{{slug}}/index'
+    media_folder: ''
+    public_folder: ''
+    fields:
+      - label: Name
+        name: name
+        widget: string
+      - label: 'Portrait'
+        name: 'image'
+        widget: 'image'
+      - description: 'Description'
+        name: 'description'
+        widget: text
