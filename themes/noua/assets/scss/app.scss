@@ -1,0 +1,28 @@
+
+@import 'reset';
+
+
+/**
+ * Header wrapper
+ */
+.header {
+  width: 1280px;
+  margin-inline: auto;
+}
+
+/**
+ * Main menu
+ */
+.main-nav {
+
+  ul {
+    display: flex;
+    justify-content: center;
+
+    a {
+      display: block;
+      padding-inline: 1rem;
+      padding-block: 1rem;
+    }
+  }
+}
