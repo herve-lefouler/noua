@@ -73,6 +73,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      # Compile SASS to CSS
+      - name: Compile SASS
+        run: ./dart-sass/sass themes/noua/assets/scss/app.scss:themes/noua/static/css/app.css
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
