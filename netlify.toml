@@ -1,0 +1,14 @@
+[build]
+  # Specify the command to build your site.
+  # This will run your SCSS compilation script and any other build steps you need.
+  command = "cd themes/noua && npm install && npm run prod:compile && hugo"
+
+  # Specify the directory that contains the final built site.
+  # This is the directory Hugo generates your site to.
+  publish = "public"
+
+  # Specify the version of Hugo you are using. Netlify will use this version to build your site.
+  # You can adjust this to match the version of Hugo you are developing with.
+  # Check https://gohugo.io/getting-started/installing/ for the latest version or the version you prefer.
+  [build.environment]
+    HUGO_VERSION = "0.92.2"
