@@ -3,15 +3,19 @@
 <ul>
   {{ range . }}
     <li>
-      <a href="{{ .RelPermalink }}">{{ .Params.name }}</a>
-      {{ with .Resources.Match "*.jpg" }}
-        {{ $image := index . 0 }}
-        <img src="{{ $image.RelPermalink }}" alt="{{ $image.Title | default $image.Name }}">
-      {{ end }}
-      {{ with .Resources.Match "*.png" }}
-        {{ $image := index . 0 }}
-        <img src="{{ $image.RelPermalink }}" alt="{{ $image.Title | default $image.Name }}">
-      {{ end }}
+      <h3>{{ .Params.name }}</h3>
+      <div class="teamMember__image">
+        {{ with .Resources.Match "*.jpg" }}
+          {{ $image := index . 0 }}
+          {{ $fit := $image.Fit "300x200" }}
+          <img src="{{ $fit.RelPermalink }}" alt="{{ $image.Title | default $image.Name }}">
+        {{ end }}
+        {{ with .Resources.Match "*.png" }}
+          {{ $image := index . 0 }}
+          {{ $fit := $image.Fit "300x200" }}
+          <img src="{{ $fit.RelPermalink }}" alt="{{ $image.Title | default $image.Name }}">
+        {{ end }}
+      </div>
       <p>{{ .Params.description }}</p>
     </li>
   {{ end }}
