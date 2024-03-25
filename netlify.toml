@@ -1,7 +1,7 @@
 [build]
   # Specify the command to build your site.
   # This will run your SCSS compilation script and any other build steps you need.
-  command = "cd themes/noua && npm install && npm run prod:compile && hugo"
+  command = "hugo && cd themes/noua && npm install && npm run prod:compile"
 
   # Specify the directory that contains the final built site.
   # This is the directory Hugo generates your site to.
