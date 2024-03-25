@@ -1,5 +1,5 @@
 {{ define "main" }}
-<div>
-
+<div id="team" class="section">
+  {{ partial "associe/list.html" (where .Site.RegularPages "Type" "associe") }}
 </div>
 {{ end }}
