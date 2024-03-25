@@ -1,0 +1,11 @@
+<h2>L'équipe</h2>
+
+<ul>
+  {{ range . }}
+    <li>
+      <a href="{{ .RelPermalink }}">{{ .Params.name }}</a>
+      <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}"/>
+      <p>{{ .Params.description }}</p>
+    </li>
+  {{ end }}
+</ul>
